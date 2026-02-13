@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Question ❤️</title>
+    
+    <style>
+        body {
+            background-color: #fce4ec;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            overflow: hidden;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 90%;
+            z-index: 10;
+        }
+        h1 { color: #731bd8; font-size: 24px; }
+        .btns { margin-top: 20px; display: flex; justify-content: center; gap: 15px; align-items: center; }
+        
+        /* Fixed: Increased padding for better clickability */
+        #yesBtn { 
+            background: #03a803; 
+            color: white; 
+            border: none; 
+            padding: 12px 25px; 
+            border-radius: 10px; 
+            cursor: pointer; 
+            font-size: 18px; 
+            transition: 0.2s;
+        }
+        #yesBtn:active { transform: scale(0.9); } /* Visual feedback when clicked */
+
+        #noBtn { 
+            background: #f80505; 
+            color: white; 
+            border: none; 
+            padding: 10px 20px; 
+            border-radius: 10px; 
+            cursor: pointer; 
+            font-size: 18px; 
+            position: relative; 
+        }
+        img { width: 150px; border-radius: 10px; }
+    </style>
+</head>
+<body>
+    
+    <div class="card" id="mainCard">
+        <img src="prisy.jpeg" raduis="70px">
+
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueGZ3bmZqZzRyeGZ3bmZqZzRyeGZ3bmZqZzRyeGZ3bmZqZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="Hearts">
+        <h1>Baby Prisy😍<br><marquee>Will you be my Valentine? ❤️</marquee></h1>
+        <div class="btns">
+            <button id="yesBtn" onclick="accepted()">Yes</button>
+            <button id="noBtn" onmouseover="moveNo()">No</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
+    <script>
+        function moveNo() {
+            const btn = document.getElementById('noBtn');
+            // Logic to move the button away
+            const x = Math.random() * (window.innerWidth - btn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - btn.offsetHeight);
+            btn.style.position = 'fixed';
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+
+        function accepted() {
+            // 1. Fire the confetti immediately
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            }
+
+            // 2. Change the content of the card
+            const card = document.getElementById('mainCard');
+            card.innerHTML = `
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueGZ3bmZqZzRyeGZ3bmZqZzRyeGZ3bmZqZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif">
+                <h1>I knew you'd say yes! 🥰</h1>
+                <p>Can't wait to spend it with you!</p>
+                <audio controls autoplay>
+                    <source src="song.mpeg" type="audio/mpeg">
+                </audio>
+            `;
+        }
+    </script>
+</body>
+</html>
